@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue test</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="tools.js"></script>
+    <script src="component.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <v-app
+        ><v-main>
+          <h1>My Vue App</h1>
+          <p>test v-template</p>
+          <v-template :template="html1" special="test_me"></v-template>
+          <v-template :template="html2" :special="['test_me']"></v-template>
+          <v-template :template="html3"></v-template>
+          <test-comp
+            color="orange"
+            v-model="test_str"
+            name="Example 1"
+            title="test title"
+            v-bind:class="{ active: isActive}"
+            v-bind:style="styleObj"
+          ></test-comp>
+          <div>Test: {{test_str}}</div>
+          <br />
+          <test-comp
+            color="red"
+            name="Ready-only Example"
+            text="This is a read-only example!"
+            title="test title"
+            read-only
+            v-bind:class="{ active: isActive}"
+            v-bind:style="styleObj"
+          ></test-comp>
+
+          <br />
+          <div><v-btn v-on:click="add">Insert Component</v-btn></div>
+          <br />
+          <div>
+            <v-btn v-on:click="add_tmpl">Insert Template Component</v-btn>
+          </div>
+          <br />
+          <div ref="container"></div>
+          <div v-for="c in comps" :key="c">
+            <v-template :template="c"></v-template>
+          </div>
+          <p>end</p>
+          <p>Values:</p>
+          <div v-for="val in values">{{val.idx}}: {{val.data}}</div>
+        </v-main></v-app
+      >
+    </div>
+    <script src="test.js"></script>
+  </body>
+</html>
